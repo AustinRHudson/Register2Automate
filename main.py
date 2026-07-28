@@ -7,7 +7,6 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
 
-
 def waitForButton(driver, xPath):
     WebDriverWait(driver, 20).until(
         EC.element_to_be_clickable((By.XPATH, xPath))
@@ -16,6 +15,10 @@ def waitForButton(driver, xPath):
         EC.invisibility_of_element((By.ID, "please-wait"))
     )
 
+def findElementAndClick(driver, xPath):
+    waitForButton(driver, xPath)
+    element = driver.find_element(By.XPATH, xPath)
+    element.click()
 
 oneDay = 86400
 
@@ -36,18 +39,17 @@ dayAmounnt = int(input("How many days will you be staying? \n"))
 driver = webdriver.Firefox()
 for i in range(dayAmounnt):
     driver.get("https://www.register2park.com/register")
+
     xPath = "//*[@id=\"propertyName\"]"
     waitForButton(driver, xPath)
     element = driver.find_element(By.XPATH, xPath)
     element.send_keys(apartmentName)
+
     xPath = "//*[@id=\"confirmProperty\"]"
-    waitForButton(driver, xPath)
-    element = driver.find_element(By.XPATH, xPath)
-    element.click()
+    findElementAndClick(driver, xPath)
+
     xPath = "/html/body/div[1]/div/div[2]/div[2]/div/form/div/div/button"
-    waitForButton(driver, xPath)
-    element = driver.find_element(By.XPATH, xPath)
-    element.click()
+    findElementAndClick(driver, xPath)
 
     try:
         WebDriverWait(driver, 2).until(
@@ -63,9 +65,8 @@ for i in range(dayAmounnt):
         print("Button not found. Safely moving on...")
 
     xPath = "//*[@id=\"registrationTypeVisitor\"]"
-    waitForButton(driver, xPath)
-    element = driver.find_element(By.XPATH, xPath)
-    element.click()
+    findElementAndClick(driver, xPath)
+
     apartmentNumberXPath = "//*[@id=\"vehicleApt\"]"
     makeXPath = "//*[@id=\"vehicleMake\"]"
     modelXPath = "//*[@id=\"vehicleModel\"]"
