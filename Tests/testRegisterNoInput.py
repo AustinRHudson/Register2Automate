@@ -13,7 +13,7 @@ from Register2Automate.RegisterAutomation import registerAutomate
 #No input version in case you want to run this script through some type of scheduler like Windows scheduler, Cron, etc.
 #Instead of the for loop that waits 23 hours inbetween each loop.
 
-#Change values to the ones needed for your stay in the Values.json file.
+#Change values to the ones needed for your stay in the TestValues.json file.
 
 with open('TestValues.json', 'r') as file:
     data = json.load(file)
@@ -22,7 +22,7 @@ messages = [data["apartmentNumber"], data["vehicleMake"], data["vehicleModel"], 
 
 driver = webdriver.Firefox()
 
-registerAutomate(driver, data["apartmentName"], messages)
+registerAutomate(driver, data["apartmentName"], messages, data["accessCode"])
 
 nextXPath = "//*[@id=\"vehicleInformation\"]"
 element = driver.find_element(By.XPATH, nextXPath)

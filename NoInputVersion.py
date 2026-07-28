@@ -22,7 +22,7 @@ messages = [data["apartmentNumber"], data["vehicleMake"], data["vehicleModel"], 
 
 driver = webdriver.Firefox()
 
-registerAutomate(driver, data["apartmentName"], messages)
+registerAutomate(driver, data["apartmentName"], messages, data["accessCode"])
 
 nextXPath = "//*[@id=\"vehicleInformation\"]"
 element = driver.find_element(By.XPATH, nextXPath)

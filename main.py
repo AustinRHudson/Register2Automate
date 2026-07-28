@@ -9,23 +9,11 @@ from selenium.common.exceptions import NoSuchElementException
 
 from Register2Automate.RegisterAutomation import registerAutomate
 
-
-def waitForButton(driver, xPath):
-    WebDriverWait(driver, 20).until(
-        EC.element_to_be_clickable((By.XPATH, xPath))
-    )
-    WebDriverWait(driver, 20).until(
-        EC.invisibility_of_element((By.ID, "please-wait"))
-    )
-
-def findElementAndClick(driver, xPath):
-    waitForButton(driver, xPath)
-    element = driver.find_element(By.XPATH, xPath)
-    element.click()
-
 oneDay = 86400
 
 apartmentName = input("What is the name of the apartment you will be staying at? \n")
+
+accessCode = input("If there is an access code, what is the code? (Skip this if there is no code)")
 
 messages = []
 message = input("What is the apartment number of where you are going to be staying? \n")
@@ -43,7 +31,7 @@ driver = webdriver.Firefox()
 for i in range(dayAmounnt):
     driver.get("https://www.register2park.com/register")
 
-    registerAutomate(driver, apartmentName, messages)
+    registerAutomate(driver, apartmentName, messages, accessCode)
 
     nextXPath = "//*[@id=\"vehicleInformation\"]"
     element = driver.find_element(By.XPATH, nextXPath)
