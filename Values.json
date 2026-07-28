@@ -3,5 +3,6 @@
   "apartmentNumber": "",
   "vehicleMake": "",
   "vehicleModel": "",
-  "licensePlate": ""
+  "licensePlate": "",
+  "accessCode": ""
 }
