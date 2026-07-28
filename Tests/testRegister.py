@@ -7,7 +7,6 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
 
-
 def waitForButton(driver, xPath):
     WebDriverWait(driver, 20).until(
         EC.element_to_be_clickable((By.XPATH, xPath))
@@ -15,7 +14,6 @@ def waitForButton(driver, xPath):
     WebDriverWait(driver, 20).until(
         EC.invisibility_of_element((By.ID, "please-wait"))
     )
-
 
 oneDay = 86400
 
@@ -81,7 +79,6 @@ for i in range(dayAmounnt):
         element.send_keys(messages[i])
 
     element = driver.find_element(By.XPATH, nextXPath)
-    element.click()
     time.sleep(oneDay)
 
 driver.close()
