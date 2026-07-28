@@ -74,5 +74,6 @@ for i in range(5):
 
 element = driver.find_element(By.XPATH, nextXPath)
 element.click()
+time.sleep(5)
 
 driver.close()
